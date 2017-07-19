@@ -54,11 +54,6 @@ def get_updated_user_list(index = None):
         return users
     return users[index:]
 
-def get_username_from_link(link = None):
-    if link != None:
-        match = re.search('http[s]?|ftp:\/?\/?[^:\/\s]+(\/\w+)*\/([\w\-\.]+[^#?\s]+).*?#[\w\-]+?$', link)
-        return match.group(1)
-
 # Scroll an element
 def scroll(element, times = 1):
     while times > 0:
@@ -98,8 +93,6 @@ date = datetime.fromtimestamp(time.time()).strftime('%Y-%m-%dT%H:%M:%S')
 db_path = 'exports/%s/following%s.pkl' % (target, date)
 os.makedirs(os.path.dirname(db_path), exist_ok = True)
 pickle.dump(links, open(db_path, 'wb'))
-
-# Stats
 print('Number of followers: %i' % len(links))
 
-# driver.close()
+driver.close()

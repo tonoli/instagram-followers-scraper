@@ -11,10 +11,17 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+# Ask for input
 target = input('Enter the target username: ')
+print('\nEnter your Instagram credentials')
+credentials = {
+    'username': input('Username: '),
+    'password': getpass.getpass()
+}
+
+# Go to Instagram
 chromedriver_path = 'drivers/chromedriver'
 driver = webdriver.Chrome(chromedriver_path)
-
 driver.get('https://www.instagram.com')
 
 # Go to log in
@@ -27,10 +34,8 @@ login_link.click()
 username_input = driver.find_element_by_xpath('//input[@placeholder="Username"]')
 password_input = driver.find_element_by_xpath('//input[@placeholder="Password"]')
 
-print('\nEnter your Instagram credentials')
-
-username_input.send_keys(input('Username: '))
-password_input.send_keys(getpass.getpass())
+username_input.send_keys(credentials['username'])
+password_input.send_keys(credentials['password'])
 password_input.send_keys(Keys.RETURN)
 time.sleep(1)
 

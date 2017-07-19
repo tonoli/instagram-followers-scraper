@@ -68,9 +68,10 @@ def scroll(element, times = 1):
 links = []
 last_user_index = 0
 updated_list = get_updated_user_list()
+initial_loading_speed = 5
 
 while updated_list[last_user_index] is not updated_list[-1]:
-    scroll(users_list_container, 2)
+    scroll(users_list_container, 5)
 
     for index, user in enumerate(updated_list):
         if index < last_user_index:
@@ -83,6 +84,8 @@ while updated_list[last_user_index] is not updated_list[-1]:
                 links.append(link_to_user)
                 print(link_to_user)
         except:
+            if (initial_loading_speed > 1):
+                initial_loading_speed -= 1
             pass
 
 

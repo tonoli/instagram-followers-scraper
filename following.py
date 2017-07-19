@@ -45,6 +45,7 @@ following_link = WebDriverWait(driver, 3).until(
     EC.presence_of_element_located((By.PARTIAL_LINK_TEXT, 'following'))
 )
 following_link.click()
+expected_number = int(re.search('(\d+)', following_link.text).group(1))
 time.sleep(1)
 
 # Select scrollable users div
@@ -101,6 +102,18 @@ date = datetime.fromtimestamp(time.time()).strftime('%Y-%m-%dT%H:%M:%S')
 db_path = 'exports/%s/following%s.pkl' % (target, date)
 os.makedirs(os.path.dirname(db_path), exist_ok = True)
 pickle.dump(links, open(db_path, 'wb'))
+
+# Stats
 print('Number of followers: %i' % len(links))
+if len(links) < expected_number:
+    mean_users = expected_number - len(links)
+    print('Expected %i followers but only found %i. %i %s probably blocked you.'
+          % (
+            expected_number,
+            len(links),
+            mean_users,
+            'people' if mean_users != 1 else 'person'
+        )
+    )
 
 driver.close()

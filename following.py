@@ -24,14 +24,14 @@ login_link = WebDriverWait(driver, 3).until(
 login_link.click()
 
 # Authenticate
-username = driver.find_element_by_xpath('//input[@placeholder="Username"]')
-password = driver.find_element_by_xpath('//input[@placeholder="Password"]')
+username_input = driver.find_element_by_xpath('//input[@placeholder="Username"]')
+password_input = driver.find_element_by_xpath('//input[@placeholder="Password"]')
 
 print('\nEnter your Instagram credentials')
 
-username.send_keys(input('Username: '))
-password.send_keys(getpass.getpass())
-password.send_keys(Keys.RETURN)
+username_input.send_keys(input('Username: '))
+password_input.send_keys(getpass.getpass())
+password_input.send_keys(Keys.RETURN)
 time.sleep(1)
 
 # Go to user profile and click following

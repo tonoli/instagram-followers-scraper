@@ -7,6 +7,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+
 class Scraper(object):
     def __init__(self, username):
         self.target = username
@@ -14,6 +15,7 @@ class Scraper(object):
 
     def close(self):
         self.driver.close()
+
 
     def authenticate(self, username, password):
         print('\nLogging in…')
@@ -37,6 +39,7 @@ class Scraper(object):
         password_input.send_keys(password)
         password_input.send_keys(Keys.RETURN)
         time.sleep(1)
+
 
     def get_users(self, group, verbose = False):
         print('\nGetting users…')
@@ -70,6 +73,7 @@ class Scraper(object):
             updated_list = self._get_updated_user_list()
         return links
 
+
     def _open_dialog(self, group):
         print('\nNavigating to %s profile…' % self.target)
         self._go_to_user_profile(self.target)
@@ -85,12 +89,15 @@ class Scraper(object):
             '//div[@role="dialog"]//ul/parent::div'
         )
 
+
     def _go_to_user_profile(self, username):
         self.driver.get('https://www.instagram.com/%s/' % username)
+
 
     # Get the actual list of `li` elements containing the users info
     def _get_updated_user_list(self):
         return self.users_list_container.find_elements(By.XPATH, 'ul//li')
+
 
     # Scroll an element
     def _scroll(self, element, times = 1):

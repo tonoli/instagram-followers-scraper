@@ -9,9 +9,14 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class Scraper(object):
-    def __init__(self, username):
-        self.target = username
+    """Starts up a browser and is able to authenticate to Instagram and get
+    followers and people following a specific user"""
+
+
+    def __init__(self, target):
+        self.target = target
         self.driver = webdriver.Chrome('drivers/chromedriver')
+
 
     def close(self):
         self.driver.close()

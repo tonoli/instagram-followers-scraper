@@ -1,21 +1,20 @@
 from datetime import datetime
-import getpass
 import os
 import pickle
 import time
 
 from scraper import Scraper
+from utils import ask_input
+
 
 # Ask for input
-target = input('Enter the target username: ')
+target = ask_input('Enter the target username: ')
 print('\nEnter your Instagram credentials')
-credentials = {
-    'username': input('Username: '),
-    'password': getpass.getpass()
-}
+username = ask_input('Username: ')
+password = ask_input(is_password = True)
 
 scraper = Scraper(target)
-scraper.authenticate(credentials['username'], credentials['password'])
+scraper.authenticate(username, password)
 users = scraper.get_users('following', verbose = True)
 scraper.close()
 

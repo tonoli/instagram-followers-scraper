@@ -1,9 +1,5 @@
-from datetime import datetime
-import os
-import pickle
-import time
-
 from scraper import Scraper
+from store import store
 from utils import ask_input
 
 
@@ -16,13 +12,8 @@ password = ask_input(is_password = True)
 scraper = Scraper(target)
 scraper.authenticate(username, password)
 users = scraper.get_users('following', verbose = True)
+store(target, users)
 scraper.close()
-
-# Store the scraped following users link
-date = datetime.fromtimestamp(time.time()).strftime('%Y-%m-%dT%H:%M:%S')
-db_path = 'exports/%s/following%s.pkl' % (target, date)
-os.makedirs(os.path.dirname(db_path), exist_ok = True)
-pickle.dump(users, open(db_path, 'wb'))
 
 # Stats
 print('Number of followers: %i' % len(users))

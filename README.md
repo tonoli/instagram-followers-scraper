@@ -12,7 +12,7 @@ A template of README best practices to make your README simple to understand and
 
 ## Requirements
 
-You need to have Python 3 and PIP installed. Follow [these installation instructions](http://python-guide-pt-br.readthedocs.io/en/latest/starting/install/osx/).
+You need to have Python 3 and PIP installed. You can follow [these installation instructions](http://python-guide-pt-br.readthedocs.io/en/latest/starting/install/osx/).
 
 
 ## Installation
@@ -37,3 +37,8 @@ After installing the dependencies run the `main.py` file with Python 3:
 ```bash
 python3 main.py
 ```
+
+## TODO
+
+- Speed up scraping of the users. Right now scraping is quite slow and can be improved
+- Handle wrong credentials or missing username

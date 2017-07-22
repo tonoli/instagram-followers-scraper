@@ -1,8 +1,8 @@
-import file_io
-import stats
+from modules import file_io
+from modules import stats
 
-from scraper import Scraper
-from utils import ask_input, ask_multiple_option
+from modules.scraper import Scraper
+from modules.utils import ask_input, ask_multiple_option
 
 
 # Ask for input

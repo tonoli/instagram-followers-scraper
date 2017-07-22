@@ -14,18 +14,23 @@ def numbers(found, expected):
 
 
 def diff(current = [], previous = []):
-    new_users = list(set(previous) - set(current))
-    lost_users = list(set(current) - set(previous))
+    new_users = list(set(current) - set(previous))
+    lost_users = list(set(previous) - set(current))
     new_length = len(new_users)
     lost_length = len(lost_users)
 
-    def print_users(users):
-        print('{} new user{}:'.format(len(users), 's' if len(users) > 0 else ''))
-        for user in new_users:
+    def print_users(users, lost=False):
+        print('{} {} user{}:'.format(
+            len(users),
+            'removed' if lost else 'new',
+            's' if len(users) != 1 else '')
+        )
+        for user in users:
             print(user)
 
-    print('\n' + '-' * 10 + '\n')
-    if (new_length is not 0):
-        print_users(new_users)
-    if (lost_length is not 0):
-        print_users(lost_users)
+    if (new_length + lost_length) > 0:
+        print('\n' + '-' * 10 + '\n')
+        if (new_length is not 0):
+            print_users(new_users)
+        if (lost_length is not 0):
+            print_users(lost_users, True)

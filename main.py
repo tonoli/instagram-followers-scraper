@@ -21,4 +21,4 @@ scraper.close()
 
 # Stats
 stats.numbers(len(users), scraper.expected_number)
-stats.diff(users, file_io.read_last(username, group))
+stats.diff(users, file_io.read_last(target, group))

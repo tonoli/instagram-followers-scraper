@@ -36,10 +36,10 @@ def store(username, group, usersList):
     return _write(path, usersList)
 
 
-def read_last(username, group):
+def read_last(username, group, before_last=0):
     """Read the last file stored for a specific username"""
 
     files = glob.glob('{}/*.pkl'.format(_get_directory(username)))
     group_files = list(
         filter(lambda path: group in ntpath.basename(path), files))
-    return _read(group_files[-1])
+    return _read(group_files[-1 - before_last])

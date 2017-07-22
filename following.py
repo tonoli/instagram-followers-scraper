@@ -1,5 +1,5 @@
+import file_io
 from scraper import Scraper
-from store import store
 from utils import ask_input
 
 
@@ -8,11 +8,12 @@ target = ask_input('Enter the target username: ')
 print('\nEnter your Instagram credentials')
 username = ask_input('Username: ')
 password = ask_input(is_password = True)
+group = 'following';
 
 scraper = Scraper(target)
 scraper.authenticate(username, password)
-users = scraper.get_users('following', verbose = True)
-store(target, users)
+users = scraper.get_users(group, verbose = True)
+file_io.store(target, group, users)
 scraper.close()
 
 # Stats

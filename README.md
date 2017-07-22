@@ -1,6 +1,6 @@
 # Instagram followers scraper
 
-A template of README best practices to make your README simple to understand and easy to use. 
+A tool to scrape the list of followers and people following a user and see the difference with a previously recorded list.
 
 ## Table of Contents
 
@@ -12,6 +12,8 @@ A template of README best practices to make your README simple to understand and
 ## Requirements
 
 You need to have Python 3 and PIP installed. You can follow [these installation instructions](http://python-guide-pt-br.readthedocs.io/en/latest/starting/install/osx/).
+
+Also, you'll need your Instagram credentials to log in. At this time the dialog with the list of followers cannot be opened as an anonymous user.
 
 
 ## Installation

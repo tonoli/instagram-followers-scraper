@@ -47,8 +47,12 @@ class Scraper(object):
 
 
     def get_users(self, group, verbose = False):
-        print('\nGetting users…')
         self._open_dialog(group)
+
+        print('\nGetting {} users…{}'.format(
+            self.expected_number,
+            '\n' if verbose else ''
+        ))
 
         links = []
         last_user_index = 0
@@ -68,8 +72,11 @@ class Scraper(object):
                     last_user_index = index
                     if link_to_user not in links:
                         links.append(link_to_user)
-                        if verbose == True:
-                            print(link_to_user)
+                        if verbose:
+                            print(
+                                '{}%'.format(round(index / self.expected_number * 100)),
+                                link_to_user
+                            )
                 except:
                     if (initial_scrolling_speed > 1):
                         initial_scrolling_speed -= 1

@@ -10,6 +10,7 @@ print('\nEnter your Instagram credentials')
 username = ask_input('Username: ')
 password = ask_input(is_password = True)
 
+# Start scraping
 scraper = Scraper(target)
 scraper.authenticate(username, password)
 users = scraper.get_users(group, verbose = True)
@@ -20,9 +21,11 @@ scraper.close()
 print('Number of followers: %i' % len(users))
 if len(users) < scraper.expected_number:
     mean_users = scraper.expected_number - len(users)
-    print('Expected %i followers but only found %i. %i %s probably blocked you.'
-          % (
+    print(
+        """Expected {} {} but only found {}. {} {} probably blocked
+        you.""".format(
             scraper.expected_number,
+            group,
             len(users),
             mean_users,
             'people' if mean_users != 1 else 'person'

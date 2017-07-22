@@ -9,8 +9,8 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class Scraper(object):
-    """Starts up a browser and is able to authenticate to Instagram and get
-    followers and people following a specific user"""
+    """Able to start up a browser, to authenticate to Instagram and get
+    followers and people following a specific user."""
 
 
     def __init__(self, target):
@@ -19,10 +19,14 @@ class Scraper(object):
 
 
     def close(self):
+        """Close the browser."""
+
         self.driver.close()
 
 
     def authenticate(self, username, password):
+        """Log in to Instagram with the provided credentials."""
+
         print('\nLogging in…')
         self.driver.get('https://www.instagram.com')
 
@@ -47,6 +51,8 @@ class Scraper(object):
 
 
     def get_users(self, group, verbose = False):
+        """Return a list of links to the users profiles found."""
+
         self._open_dialog(self._get_link(group))
 
         print('\nGetting {} users…{}'.format(
@@ -90,6 +96,9 @@ class Scraper(object):
 
 
     def _open_dialog(self, link):
+        """Open a specific dialog and identify the div containing the users
+        list."""
+
         link.click()
         self.expected_number = int(
             re.search('(\d+)', link.text).group(1)
@@ -101,6 +110,8 @@ class Scraper(object):
 
 
     def _get_link(self, group):
+        """Return the element linking to the users list dialog."""
+
         print('\nNavigating to %s profile…' % self.target)
         self.driver.get('https://www.instagram.com/%s/' % self.target)
         try:
@@ -113,11 +124,15 @@ class Scraper(object):
 
     # Get the actual list of `li` elements containing the users info
     def _get_updated_user_list(self):
+        """Return all the list items included in the users list."""
         return self.users_list_container.find_elements(By.XPATH, 'ul//li')
 
 
     # Scroll an element
     def _scroll(self, element, times = 1):
+        """Scroll a specific element one or more times with small delay between
+        them."""
+
         while times > 0:
             self.driver.execute_script(
                 'arguments[0].scrollTop = arguments[0].scrollHeight',

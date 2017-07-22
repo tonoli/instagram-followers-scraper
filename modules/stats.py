@@ -1,4 +1,8 @@
+"""Utilities to print stats about the collected set of users."""
+
 def numbers(found, expected):
+    """Print number statistics about the collected list of users."""
+
     print('Number of users: %i' % found)
     if found < expected:
         mean_users = expected - found
@@ -14,6 +18,9 @@ def numbers(found, expected):
 
 
 def diff(current = [], previous = []):
+    """Print information about the diff between the last collected list of
+    users and the previous one."""
+
     new_users = list(set(current) - set(previous))
     lost_users = list(set(previous) - set(current))
     new_length = len(new_users)

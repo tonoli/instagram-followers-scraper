@@ -122,13 +122,11 @@ class Scraper(object):
             self._get_link(self.target, group)
 
 
-    # Get the actual list of `li` elements containing the users info
     def _get_updated_user_list(self):
         """Return all the list items included in the users list."""
         return self.users_list_container.find_elements(By.XPATH, 'ul//li')
 
 
-    # Scroll an element
     def _scroll(self, element, times = 1):
         """Scroll a specific element one or more times with small delay between
         them."""

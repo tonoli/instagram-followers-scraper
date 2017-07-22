@@ -18,7 +18,6 @@ def ask_multiple_option(options, prefix = 'Choose between', prompt = ': '):
     def exists(index):
         return 0 <= index < len(options)
 
-    # while answer == None or not exists(answer):
     while True:
         print(prefix)
         for index, option in enumerate(options):

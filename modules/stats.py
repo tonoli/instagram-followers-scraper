@@ -3,12 +3,11 @@
 def numbers(found, expected):
     """Print number statistics about the collected list of users."""
 
-    print('Number of users: %i' % found)
+    print('\n\nNumber of users: %i' % found)
     if found < expected:
         mean_users = expected - found
         print(
-            """Expected {} users but only found {}. {} {} probably blocked
-            you.""".format(
+            'Expected {} users but only found {}. {} {} probably blocked you.'.format(
                 expected,
                 found,
                 mean_users,

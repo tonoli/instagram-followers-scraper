@@ -23,7 +23,7 @@ def scrape(group):
 
     # Stats
     stats.numbers(len(users), scraper.expected_number)
-    stats.diff(users, file_io.read_last(target, group))
+    stats.diff(users, file_io.read_last(target, group, 2))
 
 if (group == 'both'):
     for group in groups:

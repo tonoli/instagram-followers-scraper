@@ -27,7 +27,7 @@ class Scraper(object):
         self.driver.get('https://www.instagram.com')
 
         # Go to log in
-        login_link = WebDriverWait(self.driver, 3).until(
+        login_link = WebDriverWait(self.driver, 5).until(
             EC.presence_of_element_located((By.LINK_TEXT, 'Log in'))
         )
         login_link.click()
@@ -47,7 +47,7 @@ class Scraper(object):
 
 
     def get_users(self, group, verbose = False):
-        self._open_dialog(group)
+        self._open_dialog(self._get_link(group))
 
         print('\nGetting {} users…{}'.format(
             self.expected_number,
@@ -89,15 +89,10 @@ class Scraper(object):
         return links
 
 
-    def _open_dialog(self, group):
-        print('\nNavigating to %s profile…' % self.target)
-        self._go_to_user_profile(self.target)
-        dialog_link = WebDriverWait(self.driver, 3).until(
-            EC.presence_of_element_located((By.PARTIAL_LINK_TEXT, group))
-        )
-        dialog_link.click()
+    def _open_dialog(self, link):
+        link.click()
         self.expected_number = int(
-            re.search('(\d+)', dialog_link.text).group(1)
+            re.search('(\d+)', link.text).group(1)
         )
         time.sleep(1)
         self.users_list_container = self.driver.find_element_by_xpath(
@@ -105,8 +100,15 @@ class Scraper(object):
         )
 
 
-    def _go_to_user_profile(self, username):
-        self.driver.get('https://www.instagram.com/%s/' % username)
+    def _get_link(self, group):
+        print('\nNavigating to %s profile…' % self.target)
+        self.driver.get('https://www.instagram.com/%s/' % self.target)
+        try:
+            return WebDriverWait(self.driver, 5).until(
+                EC.presence_of_element_located((By.PARTIAL_LINK_TEXT, group))
+            )
+        except:
+            self._get_link(self.target, group)
 
 
     # Get the actual list of `li` elements containing the users info

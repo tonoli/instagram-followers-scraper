@@ -7,8 +7,7 @@ A template of README best practices to make your README simple to understand and
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Support](#support)
-- [Contributing](#contributing)
+- [TODO](#todo)
 
 ## Requirements
 

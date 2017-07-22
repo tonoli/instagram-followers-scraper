@@ -74,8 +74,10 @@ class Scraper(object):
                         links.append(link_to_user)
                         if verbose:
                             print(
-                                '{}%'.format(round(index / self.expected_number * 100)),
+                                '{0:.2f}% {1:s}'.format(
+                                round(index / self.expected_number * 100, 2),
                                 link_to_user
+                                )
                             )
                 except:
                     if (initial_scrolling_speed > 1):
@@ -83,6 +85,7 @@ class Scraper(object):
                     pass
 
             updated_list = self._get_updated_user_list()
+        print('100% Complete')
         return links
 
 

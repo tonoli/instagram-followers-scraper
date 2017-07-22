@@ -1,4 +1,6 @@
 import file_io
+import stats
+
 from scraper import Scraper
 from utils import ask_input, ask_multiple_option
 
@@ -18,18 +20,5 @@ file_io.store(target, group, users)
 scraper.close()
 
 # Stats
-print('Number of followers: %i' % len(users))
-if len(users) < scraper.expected_number:
-    mean_users = scraper.expected_number - len(users)
-    print(
-        """Expected {} {} but only found {}. {} {} probably blocked
-        you.""".format(
-            scraper.expected_number,
-            group,
-            len(users),
-            mean_users,
-            'people' if mean_users != 1 else 'person'
-        )
-    )
-
-
+stats.numbers(len(users), scraper.expected_number)
+stats.diff(users, file_io.read_last(username, group))

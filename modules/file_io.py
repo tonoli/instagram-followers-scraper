@@ -51,4 +51,7 @@ def read_last(username, group, before_last=1):
     files = glob.glob('{}/*.pkl'.format(_base_directory(username)))
     group_files = list(
         filter(lambda path: group in ntpath.basename(path), files))
-    return _read(group_files[-before_last])
+    try:
+        return _read(group_files[-before_last])
+    except:
+        return list()

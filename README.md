@@ -28,7 +28,7 @@ Then go to the directory and install the required dependencies
 
 ```bash
 cd instagram-followers-scraper
-pip3 install -r requirements.txt -q
+pip3 install -r requirements.txt
 ```
 
 ## Usage

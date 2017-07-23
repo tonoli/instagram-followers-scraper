@@ -1,6 +1,6 @@
 # Instagram followers scraper
 
-A tool to scrape the list of followers and people following a user and see the difference with a previously recorded list.
+This tool uses Python and [Selenium](http://www.seleniumhq.org/) to scrape the list of followers and people following a user and see the difference with a previously recorded list.
 
 ## Table of Contents
 
@@ -11,7 +11,7 @@ A tool to scrape the list of followers and people following a user and see the d
 
 ## Requirements
 
-You need to have Python 3 and PIP installed. You can follow [these installation instructions](http://python-guide-pt-br.readthedocs.io/en/latest/starting/install/osx/).
+You need to have Python 3 and PIP installed. You can follow [these installation instructions](http://python-guide-pt-br.readthedocs.io/en/latest/starting/install/osx/). You also need to have Chrome installed as Selenium uses the `chromedriver` contained in the `drivers` folder.
 
 Also, you'll need your Instagram credentials to log in. At this time the dialog with the list of followers cannot be opened as an anonymous user.
 

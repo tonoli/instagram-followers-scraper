@@ -54,4 +54,4 @@ def read_last(username, group, before_last=1):
     try:
         return _read(group_files[-before_last])
     except:
-        return list()
+        return False

@@ -1,4 +1,5 @@
 from datetime import datetime
+from modules import compare
 from modules import file_io
 from modules import stats
 
@@ -19,13 +20,16 @@ def scrape(group):
     startTime = datetime.now()
     scraper = Scraper(target)
     scraper.authenticate(username, password)
-    users = scraper.get_users(group, verbose = True)
     file_io.store(target, group, users)
+    users = scraper.get_users(group, verbose=True)
     scraper.close()
+
+    last_users = file_io.read_last(target, group, 2)
+    differs = bool(compare.get_diffs(users, last_users))
 
     # Stats
     stats.numbers(len(users), scraper.expected_number)
-    stats.diff(users, file_io.read_last(target, group, 2))
+    if (differs): stats.diff(users, last_users)
     print('Took ' + str(datetime.now() - startTime))
 
 if (group == 'both'):

@@ -124,6 +124,7 @@ class Scraper(object):
 
     def _get_updated_user_list(self):
         """Return all the list items included in the users list."""
+
         return self.users_list_container.find_elements(By.XPATH, 'ul//li')
 
 

@@ -1,3 +1,4 @@
+from datetime import datetime
 from modules import file_io
 from modules import stats
 
@@ -15,6 +16,7 @@ username = ask_input('Username: ')
 password = ask_input(is_password = True)
 
 def scrape(group):
+    startTime = datetime.now()
     scraper = Scraper(target)
     scraper.authenticate(username, password)
     users = scraper.get_users(group, verbose = True)
@@ -24,6 +26,7 @@ def scrape(group):
     # Stats
     stats.numbers(len(users), scraper.expected_number)
     stats.diff(users, file_io.read_last(target, group, 2))
+    print('Took ' + str(datetime.now() - startTime))
 
 if (group == 'both'):
     for group in groups:

@@ -17,14 +17,17 @@ username = ask_input('Username: ')
 password = ask_input(is_password = True)
 
 def scrape(group):
-    startTime = datetime.now()
+    differs = False
     scraper = Scraper(target)
+    startTime = datetime.now()
+
     scraper.authenticate(username, password)
     users = scraper.get_users(group, verbose=True)
     scraper.close()
 
     last_users = file_io.read_last(target, group, 2)
-    differs = bool(compare.get_diffs(users, last_users))
+    if last_users:
+        differs = bool(compare.get_diffs(users, last_users))
 
     if (differs): file_io.store(target, group, users)
     # Stats

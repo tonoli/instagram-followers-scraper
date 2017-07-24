@@ -29,7 +29,8 @@ def scrape(group):
     if last_users:
         differs = bool(compare.get_diffs(users, last_users))
 
-    if (differs): file_io.store(target, group, users)
+    if (differs or not last_users):
+        file_io.store(target, group, users)
     # Stats
     stats.numbers(len(users), scraper.expected_number)
     if (differs): stats.diff(users, last_users)

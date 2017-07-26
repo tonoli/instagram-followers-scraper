@@ -25,7 +25,7 @@ def scrape(group):
     users = scraper.get_users(group, verbose=True)
     scraper.close()
 
-    last_users = file_io.read_last(target, group, 2)
+    last_users = file_io.read_last(target, group)
     if last_users:
         differs = bool(compare.get_diffs(users, last_users))
 

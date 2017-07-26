@@ -64,10 +64,11 @@ class Scraper(object):
         last_user_index = 0
         updated_list = self._get_updated_user_list()
         initial_scrolling_speed = 5
+        retry = 2
 
         # While there are more users scroll and save the results
-        while updated_list[last_user_index] is not updated_list[-1]:
             self._scroll(self.users_list_container, 5)
+        while updated_list[last_user_index] is not updated_list[-1] or retry > 0:
 
             for index, user in enumerate(updated_list):
                 if index < last_user_index:
@@ -91,6 +92,9 @@ class Scraper(object):
                     pass
 
             updated_list = self._get_updated_user_list()
+            if updated_list[last_user_index] is updated_list[-1]:
+                retry -= 1
+
         print('100% Complete')
         return links
 

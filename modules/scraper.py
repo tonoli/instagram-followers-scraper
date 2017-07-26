@@ -67,8 +67,8 @@ class Scraper(object):
         retry = 2
 
         # While there are more users scroll and save the results
-            self._scroll(self.users_list_container, 5)
         while updated_list[last_user_index] is not updated_list[-1] or retry > 0:
+            self._scroll(self.users_list_container, initial_scrolling_speed)
 
             for index, user in enumerate(updated_list):
                 if index < last_user_index:

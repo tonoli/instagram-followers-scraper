@@ -45,3 +45,4 @@ You'll be asked to input the username that you want to analyze and your Instagra
 
 - Speed up scraping of the users. Right now scraping is quite slow and can be improved
 - Handle wrong credentials or missing username
+[![Run on Repl.it](https://repl.it/badge/github/tonoli/instagram-followers-scraper)](https://repl.it/github/tonoli/instagram-followers-scraper)
